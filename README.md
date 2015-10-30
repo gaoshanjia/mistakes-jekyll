@@ -1,21 +1,18 @@
-# Twister
-![twister preview](/img/twister_preview_big.jpg)
+# Docster
+![docster preview](https://raw.githubusercontent.com/DigitalMindCH/docster-jekyll-theme/gh-pages/img/docster_preview.jpg)
 
-## Multimedia
-If we had to choose one word to describe Twister that would be it. Twister is a theme that focusses on multimedia. It contains different post types to create video posts, audio posts, image post or gallery posts with ease. We created a ton of Variables, that make customization super easy.
-
-This theme is powerful and it comes with a few extras.
+## simple and easy
+That's how we would describe working with docster.
+We first created it, when we needed an index file for a theme documentation. jekyll offered collections which made the organization into smaller chunks of documentation optimal. Especially because the collections did not generate outputs for themselves.
+This theme was created to generate an organized output. It does not require any plugins, which means you can host on GitHub without much effort.
 
 ## Features
-The theme comes with a grunt file, which means that working with it is super easy. We have Tasks that compile, concatenate, minify and even deploy to your site.
+* Nice syntax highlighting
+* dynamic multi-level navigation
+* Sass stylesheets
 
-### Front Matter Generator
-Twister comes with a front matter generator that will make generating the front matter for each post a breeze. So you don't have to remember each and every variable name, the generator will help you with that.
-
-### Extensive Documentation
-We don't believe in delivering Code without explanation. So we wrote an extensive Documentation for Twister that goes over every single step from installing all of the dependencies to explaining how to customize, create posts and publish. We even tell you how you can host Twister with Plugins on GitHub pages.
-
-Check the [Docs](http://twister.digitalmind.ch/documentation/) out.
+### Documentation
+We don't believe in delivering Code without explanation. Especially not for a documentation theme. So the [Demo](http://digitalmind.ch/themes/docster-jekyll-theme/demo/) doubles as the documentation for Docster, that should help you set up your own docs without any problems.
 
 ### Feedback, Wishes, Problems
 If you run into any trouble or have a request please do so by opening up an issue on the theme's GitHub page.

@@ -1,28 +1,66 @@
-<ul id="nav">
-    {% assign level-1 = site.entries | where: "sectionclass", "h1" | sort: "number"%}
-    {% for entry in level-1 %}
-    <li {% if entry.is-parent or forloop.first %} class="{% if entry.is-parent %}parent{% endif %}{% if forloop.first %} current{% endif %}"{% endif %}>
-        <a href="#{{ entry.sectionid }}">{{ entry.title }}</a>
-        {% if entry.is-parent %}
-            <ul>
-                {% assign level-2 = site.entries | where: "parent-id", entry.sectionid | sort: "number" %}
-                {% for child in level-2 %}
-                    <li {% if child.is-parent %}class="parent"{% endif %}>
-                        <a href="#{{ child.sectionid }}">{{ child.title }}</a>
-                        {% if child.is-parent %}
-                            <ul>
-                                {% assign level-3 = site.entries | where: "parent-id", child.sectionid | sort: "number" %}
-                                {% for grandchild in level-3 %}
-                                <li>
-                                    <a href="#{{ grandchild.sectionid }}">{{ grandchild.title }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{{ site.baseurl }}/">Home</a>
                     </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+                    {% for page in site.pages %}{% if page.title %}
+                    <li>
+                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                    </li>
+                    {% endif %}{% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>

@@ -3,71 +3,90 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
         uglify: {
-            main: {
-                src: 'js/<%= pkg.name %>.js',
-                dest: 'js/<%= pkg.name %>.min.js'
+            build: {
+                src: 'js/*.js',
+                dest: 'js/build/global.min.js'
             }
         },
-        less: {
-            expanded: {
-                options: {
-                    paths: ["css"]
-                },
-                files: {
-                    "css/<%= pkg.name %>.css": "less/<%= pkg.name %>.less"
-                }
+
+        sass: {
+            options: {
+                outputStyle: 'compressed',
             },
-            minified: {
-                options: {
-                    paths: ["css"],
-                    cleancss: true
-                },
-                files: {
-                    "css/<%= pkg.name %>.min.css": "less/<%= pkg.name %>.less"
-                }
-            }
-        },
-        banner: '/*!\n' +
-            ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-            ' */\n',
-        usebanner: {
             dist: {
-                options: {
-                    position: 'top',
-                    banner: '<%= banner %>'
-                },
                 files: {
-                    src: ['css/<%= pkg.name %>.css', 'css/<%= pkg.name %>.min.css', 'js/<%= pkg.name %>.min.js']
+                    'css/main.css': 'sass/main.scss',
+                    'css/grid.css': 'sass/grid.scss',
+                    'css/classic.css': 'sass/classic.scss'
                 }
             }
         },
-        watch: {
-            scripts: {
-                files: ['js/<%= pkg.name %>.js'],
-                tasks: ['uglify'],
-                options: {
-                    spawn: false,
-                },
+
+        autoprefixer: {
+            options: {
+                browsers: ['> 1%']
             },
-            less: {
-                files: ['less/*.less'],
-                tasks: ['less'],
-                options: {
-                    spawn: false,
-                }
+            no_dest: {
+                src: 'css/*.css' // globbing is also possible here
             },
         },
+
+        watch: {
+            options: {
+                livereload: true
+            },
+            site: {
+                files: ["*.html", "**/*.html", "*.md", "**/*.md", "**/*.yml", "*.yml", "!_site/*.*", "!_site/**/*.*"],
+                tasks: ["shell:jekyllBuild"]
+            },
+            js: {
+                files: ["js/*.js"],
+                tasks: ["uglify", "shell:jekyllBuild"]
+            },
+            css: {
+                files: ["sass/*.scss", "sass/partials/*.scss", "sass/partials/components/*.scss", "sass/partials/layout/*.scss", "sass/modules/*.scss"],
+                tasks: ["sass", "autoprefixer", "shell:jekyllBuild"]
+            }
+        },
+
+        buildcontrol: {
+            options: {
+                dir: '_site',
+                commit: true,
+                push: true,
+                message: 'Built _site from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            pages: {
+                options: {
+                    remote: 'https://github.com/user/reponame.git', // change that
+                    branch: 'gh-pages' // adjust here
+                }
+            }
+        },
+
+        shell: {
+            jekyllServe: {
+                command: "jekyll serve  --no-watch"
+            },
+            jekyllBuild: {
+                command: "jekyll build"
+            }
+        }
     });
 
-    // Load the plugins.
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-banner');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-build-control');
 
     // Default task(s).
-    grunt.registerTask('default', ['uglify', 'less', 'usebanner']);
 
+    grunt.registerTask("serve", ["shell:jekyllServe"]);
+    grunt.registerTask("default", ["sass", "autoprefixer", "shell:jekyllBuild", "watch"]);
+    grunt.registerTask("deploy", ["buildcontrol:pages"]);
 };

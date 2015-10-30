@@ -1,66 +1,84 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
-        </div>
+<section class="main_menu">
+    <div class="content">
+        <nav id="menu">
+            <a class="toggle_link noline"><i class="fa fa-close fa-lg"></i></a>
+            <ul>
+                <li>
+                    <a href="{{ site.baseurl | replace: '//', '/' }}/page">Page</a>
+                </li>
+                <li>
+                    <a href="{{ site.baseurl | replace: '//', '/' }}/page-full">Full-Width Page</a>
+                </li>
+                <li>
+                    <a href="{{ site.baseurl | replace: '//', '/' }}/archive">Archive</a>
+                </li>
+                <li>
+                    <a href="{{ site.baseurl | replace: '//', '/' }}/typography">Typography</a>
+                </li>
+                <li class="parent"><a href="#">Drop Example</a>
+                    <ul>
+                        <li><a href="/child1">child</a></li>
+                        <li><a href="/child2">child</a></li>
+                        <li><a href="/child3">child</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav class="iconnav">
+            <ul>
+                <li class="sicon">
+                    <a href='#search'><i class='fa fa-search'></i></a>
+                </li>
+                {% if site.tumblr %}
+                    <li class="social">
+                        <a href="{{ site.tumblr }}" class="tumblr"><i class="fa fa-tumblr"></i></a>
+                    </li>
+                {% endif %}
+                {% if site.pinterest %}
+                    <li class="social">
+                        <a href="{{ site.pinterest }}" class="pinterest"><i class="fa fa-pinterest"></i></a>
+                    </li>
+                {% endif %}
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{{ site.baseurl }}/">Home</a>
+                {% if site.instagram %}
+                    <li class="social">
+                        <a href="{{ site.instagram }}" class="instagram"><i class="fa fa-instagram"></i></a>
                     </li>
-                    {% for page in site.pages %}{% if page.title %}
-                    <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                {% endif %}
+
+                {% if site.twitter %}
+                    <li class="social">
+                        <a href="{{ site.twitter }}" class="twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    {% endif %}{% endfor %}
-                </ul>
-            </div>
-        </div>
-        <!-- /.navbar-collapse -->
+                {% endif %}
+
+                {% if site.facebook %}
+                    <li class="social">
+                        <a href="{{ site.facebook }}" class="facebook"><i class="fa fa-facebook"></i></a>
+                    </li>
+                {% endif %}
+
+                {% if site.youtube %}
+                    <li class="social">
+                        <a href="{{ site.youtube }}" class="youtube"><i class="fa fa-youtube"></i></a>
+                    </li>
+                {% endif %}
+
+                {% if site.vimeo %}
+                    <li class="social">
+                        <a href="{{ site.vimeo }}" class="vimeo"><i class="fa fa-vimeo-square"></i></a>
+                    </li>
+                {% endif %}
+
+                {% if site.soundcloud %}
+                    <li class="social">
+                        <a href="{{ site.soundcloud }}" class="soundcloud"><i class="fa fa-soundcloud"></i></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a href='#menu' class="toggle_link noline">
+            <i class="fa fa-navicon"></i>
+        </a>
     </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
+</section>

@@ -1,88 +1,48 @@
-# Site settings
-title: 高山家
-SEOTitle: 高山家 | TAKAYAMA HOME
-header-img: img/home-bg.jpg
-email: 2030823523@qq.com
-description: "关于日本文化、料理、艺术。在合肥。"
-keyword: "高山家, 许永强, 日本, 料理, 日料, 艺术, 合肥日本文化, 个人网站, TAKAYAMA HOME"
-url: "http://gaoshanjia.github.io"
-baseurl: ""
+# config
+cover: /img/bg_img.jpg
+logo: /img/logo.png
+top_saying:
+- title: YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.
+- content: 每一个不曾起舞的日子都是对生命的辜负。
+bottom_saying: 虽然还没想好写点什么，但是总觉得这里放句话比较和谐。
+# Content
+excerpt_link: Read More
 
+rss: /atom.xml
 
+highlightjs: vs
 
-# SNS settings
-RSS: false
-weibo_username:     2540420880
-#zhihu_username:     ying-xiong-zhong-gui-cao-mang
-#github_username:    27979831
-twitter_username:  英雄终归草莽
-facebook_username:  27979831
+#Works
+works:
+- works_name: AAA
+  works_url: /
+- works_name: BBB
+  works_url: /atom.xml
 
+#duoshuo name
+duoshuo: duoshuo_name
 
+# Miscellaneous
+github: https://github.com/
+twitter: https://twitter.com/
+facebook: https://www.facebook.com/
+google: https://google.com/
+weibo: http://weibo.com/
 
-# Build settings
-highlighter: pygments
-permalink: pretty
-paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+#about  timeline
+timeline:
+- num: 1
+  word: 2014/06/12-Start
+- num: 2
+  word: 2014/11/29-XXX
+- num: 3
+  word: 2015/02/18-DDD
+- num: 4
+  word: More
 
-
-
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: kramdown
-kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
-
-
-
-# Duoshuo settings
-duoshuo_username: huxblog
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
-
-
-
-
-# Analytics settings
-# Baidu Analytics
-#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
-# Google Analytics
-#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-#sga_domain: 27979831.github.io
-
-
-
-# Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "世界那么大，多玩玩看看。"
-sidebar-avatar: /img/avatar.jpg     # use absolute URL.
-
-
-
-# Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
-
-
-
-# Friends
-friends: [
-    {
-        title: "李超源的博客",
-        href: "http://27979831.github.io"
-    }
-#	,{
-#        title: "Luke的自留地",
-#        href: "http://hmqk1995.github.io"
-#    },{
-#        title: "SmdCn's Blog",
-#        href: "http://blog.smdcn.net"
-#    },{
-#        title: "解旻的博客",
-#        href: "http://xieminis.me/"
-#    }
-]
+#Links
+links:
+- name: Kieran
+  link: http://go.kieran.top/
+- name: Name
+  link: http://domain.com/

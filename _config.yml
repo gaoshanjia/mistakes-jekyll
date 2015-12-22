@@ -102,8 +102,8 @@ owner:
   github: mmistakes
   github-repo: https://github.com/mmistakes/made-mistakes-jekyll/
   google:
-    ad-client: ca-pub-7328585512091257
-    ad-slot: 3049671934
+  #  ad-client: ca-pub-7328585512091257
+  #  ad-slot: 3049671934
     analytics: UA-2011187-1
     plus: https://plus.google.com/+MichaelRoseDesign/posts
     verify: geapSKtvpBNDSfXVmF09E9CnaHGglbO61r4XgLZtEmo

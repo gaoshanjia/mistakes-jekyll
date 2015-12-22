@@ -1,71 +1,73 @@
-'use strict';
 module.exports = function(grunt) {
 
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    imagemin: {
-      dist: {
-        options: {
-          optimizationLevel: 7,
-          progressive: true
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify: {
+            main: {
+                src: 'js/<%= pkg.name %>.js',
+                dest: 'js/<%= pkg.name %>.min.js'
+            }
         },
-        files: [{
-          expand: true,
-          cwd: 'images/',
-          src: '{,*/}*.{png,jpg,jpeg}',
-          dest: 'images/'
-        }]
-      }
-    },
-    imgcompress: {
-      dist: {
-        options: {
-          optimizationLevel: 7,
-          progressive: true
+        less: {
+            expanded: {
+                options: {
+                    paths: ["css"]
+                },
+                files: {
+                    "css/<%= pkg.name %>.css": "less/<%= pkg.name %>.less"
+                }
+            },
+            minified: {
+                options: {
+                    paths: ["css"],
+                    cleancss: true
+                },
+                files: {
+                    "css/<%= pkg.name %>.min.css": "less/<%= pkg.name %>.less"
+                }
+            }
         },
-        files: [{
-          expand: true,
-          cwd: 'images/',
-          src: '{,*/}*.{png,jpg,jpeg}',
-          dest: 'images/'
-        }]
-      }
-    },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '_svg/',
-          src: '{,*/}*.svg',
-          dest: 'svg/'
-        }]
-      }
-    },
-    svgstore: {
-      options: {
-        prefix : 'icon-',
-        cleanup: false,
-        svg: {
-          style: 'display: none;'
-        }
-      },
-      default: {
-        files: {
-          '_includes/svg-icons.svg':
-            ['svg/*.svg']
-        }
-      }
-    }
-  });
+        banner: '/*!\n' +
+            ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' */\n',
+        usebanner: {
+            dist: {
+                options: {
+                    position: 'top',
+                    banner: '<%= banner %>'
+                },
+                files: {
+                    src: ['css/<%= pkg.name %>.css', 'css/<%= pkg.name %>.min.css', 'js/<%= pkg.name %>.min.js']
+                }
+            }
+        },
+        watch: {
+            scripts: {
+                files: ['js/<%= pkg.name %>.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn: false,
+                },
+            },
+            less: {
+                files: ['less/*.less'],
+                tasks: ['less'],
+                options: {
+                    spawn: false,
+                }
+            },
+        },
+    });
 
-  // Load tasks
-  grunt.loadNpmTasks('grunt-newer');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-imgcompress');
-  grunt.loadNpmTasks('grunt-svgstore');
-  grunt.loadNpmTasks('grunt-svgmin');
+    // Load the plugins.
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-banner');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Register tasks
-  grunt.registerTask('images', ['newer:imgcompress', 'newer:svgmin']);
-  grunt.registerTask('svg', ['svgstore'])
+    // Default task(s).
+    grunt.registerTask('default', ['uglify', 'less', 'usebanner']);
+
 };

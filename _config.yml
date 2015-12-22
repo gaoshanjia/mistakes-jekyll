@@ -1,131 +1,88 @@
-# Site wide configuration
+# Site settings
+title: 高山家
+SEOTitle: 高山家 | TAKAYAMA HOME
+header-img: img/home-bg.jpg
+email: 2030823523@qq.com
+description: "关于日本文化、料理、艺术。在合肥。"
+keyword: "高山家, 许永强, 日本, 料理, 日料, 艺术, 合肥日本文化, 个人网站, TAKAYAMA HOME"
+url: "http://gaoshanjia.github.io"
+baseurl: ""
 
-title: "Made Mistakes"
-description: "Personal website of designer slash illustrator Michael Rose."
-logo: site-logo.png
-teaser: default-teaser.png
-locale: en_US
-url: https://gaoshanjia.com
 
 
-# Jekyll configuration
+# SNS settings
+RSS: false
+weibo_username:     2540420880
+#zhihu_username:     ying-xiong-zhong-gui-cao-mang
+#github_username:    27979831
+twitter_username:  英雄终归草莽
+facebook_username:  27979831
 
-permalink: /:categories/:title/
-lsi: true
+
+
+# Build settings
+highlighter: pygments
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-include: [".htaccess"]
-exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "*.sublime-project", "*.sublime-workspace", "Gemfile", "Gemfile.lock", "README.md", "node_modules", "Gruntfile.js", "package.json", ".jekyll-assets-cache", "autoprefixer.yml"]
+  input: GFM                            # use Github Flavored Markdown !important
 
 
-# Plugin: jekyll-assets
 
-assets:
-  sources:
-    - _assets/javascripts
-    - _assets/stylesheets
-  baseurl: https://gaoshanjia.com/assets/
-  js_compressor: uglifier
-  css_compressor: sass
-  cachebust: hard
-  cache: true
-  debug: false
-  version: 1
+# Duoshuo settings
+duoshuo_username: huxblog
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
 
-# Plugin: jekyll-archives
-
-jekyll-archives:
-  enabled:
-    - tags
-    - year
-  layouts:
-    year: year_index
-    tag: tag_index
-  permalinks:
-    year: /:year/
-    tag: /tag/:name/
 
 
-# Plugin: jekyll-picture-tag
-
-picture:
-  source: "images/_originals"
-  output: "images"
-  markup: "picture"
-  presets:
-    default:
-      ppi: [1]
-      source_720:
-        media: "(min-width: 1200px)"
-        width: "720"
-      source_670:
-        media: "(min-width: 768px)"
-        width: "670"
-      source_540:
-        media: "(min-width: 600px)"
-        width: "540"
-      source_default:
-        width: "320"
-    hero:
-      attr:
-        class: "page__hero-image"
-        itemprop: "image"
-      ppi: [1]
-      source_1600:
-        media: "(min-width: 1600px)"
-        width: "1600"
-      source_1024:
-        media: "(min-width: 1024px)"
-        width: "1024"
-      source_768:
-        media: "(min-width: 768px)"
-        width: "768"
-      source_600:
-        media: "(min-width: 600px)"
-        width: "600"
-      source_default:
-        width: "320"
+# Analytics settings
+# Baidu Analytics
+#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+# Google Analytics
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#sga_domain: 27979831.github.io
 
 
-# Site owner
 
-owner:
-  name: "Michael Rose"
-  email: michael@mademistakes.com
-  twitter: mmistakes
-  facebook: michaelrose
-  instagram: mmistakes
-  tumblr: mademistakes
-  github: mmistakes
-  github-repo: https://github.com/mmistakes/made-mistakes-jekyll/
-  google:
-  #  ad-client: ca-pub-7328585512091257
-  #  ad-slot: 3049671934
-    analytics: UA-2011187-1
-    plus: https://plus.google.com/+MichaelRoseDesign/posts
-    verify: geapSKtvpBNDSfXVmF09E9CnaHGglbO61r4XgLZtEmo
-  bing:
-    verify: D81F4C18A6CB3018F64D7C827D953DFD
-  alexa:
-    verify: Y5DYjZ4VWlrQzBP5kcQJeOKLNas
-  yandex:
-    verify: 55a5419baf76a498
-  bio: "Just another boring, tattooed, time traveling designer from Buffalo, New York. I enjoy eating chicken wings and sketching on an iPad."
-  avatar: bio-photo.jpg # 160x160 px image for author byline
-disqus-shortname: mmistakes
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "世界那么大，多玩玩看看。"
+sidebar-avatar: /img/avatar.jpg     # use absolute URL.
 
 
-# Collections
 
-collections:
-  faqs:
-    output: true
-    permalink: /:collection/:path/
-    title: FAQs
-  components:
-    output: false
-  colors:
-    output: false
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "李超源的博客",
+        href: "http://27979831.github.io"
+    }
+#	,{
+#        title: "Luke的自留地",
+#        href: "http://hmqk1995.github.io"
+#    },{
+#        title: "SmdCn's Blog",
+#        href: "http://blog.smdcn.net"
+#    },{
+#        title: "解旻的博客",
+#        href: "http://xieminis.me/"
+#    }
+]

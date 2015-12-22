@@ -1,0 +1,18 @@
+/* ==========================================================================
+   FOOTNOTES
+   ========================================================================== */
+
+.footnotes {
+  position: relative;
+  padding-top: 1em;
+  font-family: $sans-serif;
+
+  p, li {
+    font-size: 0.8rem;
+  }
+
+  &:before {
+    content: 'Footnotes:'; /* Prepend footnote list with a title */
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,120 @@
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/*
+   Container
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  padding-left: 1em;
+  padding-right: 1em;
+  @media(min-width: $small) {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  @media(min-width: $medium) {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+  @media (min-width: $large) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/*
+   Visibility
+   ========================================================================== */
+
+/* Hide element */
+
+.hidden,
+.load {
+  display: none;
+}
+
+
+/*
+   Type
+   ========================================================================== */
+
+/* Center align */
+
+.center {
+  text-align: center;
+}
+
+/* Flush left lists */
+
+ul.fl, ol.fl {
+  display: table;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+  border-collapse: collapse;
+  li {
+    display: table-row;
+  }
+  li + li {
+    margin-top: 0;
+    border-top: 0.5em solid transparent; // to fake vertical space between list elements
+  }
+}
+
+ul.fl {
+  li {
+    &:before {
+      content: "\25a0"; // square bullet
+      display: table-cell;
+      padding-right: 1em;
+    }
+  }
+}
+
+ol.fl {
+  li {
+    counter-increment: table-ol;
+    &:before {
+      content: counter(table-ol) ".";
+      display: table-cell;
+      padding-right: 1em;
+      text-align: right;
+    }
+  }
+}
+
+
+/*
+   Alignment
+   ========================================================================== */
+
+.float-right {
+  clear: left;
+  @include breakpoint($large) {
+    float: right;
+    clear: none;
+  }
+}
+
+/* clearfix */
+
+.cf { clear: both; }
+
+/*
+   Images
+   ========================================================================== */
+
+/* Image align right */
+
+.image-right {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  @include breakpoint($small) {
+    float: right;
+    margin-left: 1em;
+  }
+}

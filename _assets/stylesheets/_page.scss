@@ -1,0 +1,371 @@
+/* ==========================================================================
+   SINGLE PAGE/POST
+   ========================================================================== */
+
+#main {
+  animation: fade-in 2s;
+}
+
+/*
+   Hero
+   ========================================================================== */
+
+.page__hero {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.page__hero-image {
+  width: 100%;
+}
+
+.page__hero-credit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 2px 5px;
+  color: rgba(#fff, 0.75);
+  font-family: $sans-serif;
+  font-size: 0.64rem;
+  background: rgba(#000, 0.5);
+  text-align: right;
+  z-index: 5;
+  @include breakpoint($medium) {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+/*
+   Content
+   ========================================================================== */
+
+.post__content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  @include breakpoint($small) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.post__inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  @include breakpoint($medium-wide) {
+    width: calc(100% - 200px);
+  }
+  @include breakpoint($large) {
+    width: calc(100% - 240px);
+  }
+  @media (min-width: 1025px) {
+    width: calc(100% - 380px);
+  }
+}
+
+.post__body {
+  width: 100%;
+
+  /* introductory paragraph */
+  > p:first-child {
+    font-size: 1.25rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1.25rem;
+    // color: $headline-color;
+    font-family: $serif;
+    font-weight: normal;
+    a {
+      color: $headline-color;
+    }
+  }
+
+  h2 {
+    margin-top: 3rem;
+    font-size: 1.563rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  h5 {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  h6 {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  /* cleaner underlines for links */
+  p > a {
+    // color: inherit;
+    border-bottom: 1px solid $link-underline-color;
+    // transition: border 0.4s ease-in-out;
+    &:hover {
+      color: #000;
+      border-bottom-color: #000;
+    }
+  }
+  li > a,
+  td > a,
+  small a {
+    color: inherit;
+    border-bottom: 1px solid $link-underline-color;
+    &:hover {
+      color: #000;
+      border-bottom-color: $text-color;
+    }
+  }
+
+  ul, ol {
+    li + li {
+      margin-top: 0.5em;
+    }
+  }
+
+  /* SVG icons */
+  .icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  /* hide toc to avoid flash of content as it moves to sidebar */
+  .js-toc {
+    display: none;
+  }
+}
+
+.post__comments,
+.post__footer,
+.post__social,
+.post__taxonomy {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid $light-gray;
+}
+
+/* header */
+
+.post__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.post__title {
+  font-family: $serif;
+  font-size: 1.953rem;
+  font-weight: normal;
+}
+
+.post__excerpt {
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-top: 0;
+  // @include breakpoint($medium-wide) {
+  //   width: calc(100% - 340px);
+  // }
+  // @include breakpoint($large) {
+  //   width: calc(100% - 380px);
+  // }
+}
+
+.breadcrumbs {
+  order: -1;
+}
+
+/* footer */
+
+.post__footer {
+  margin-top: 2em;
+  @include breakpoint($large) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* author info */
+
+.author__wrapper {
+  display: flex;
+  flex: 4;
+  align-items: flex-start;
+}
+
+.author__name {
+  margin: 0;
+  font-family: $serif;
+  font-style: italic;
+  font-weight: normal;
+  a:hover {
+    text-decoration: underline;
+  }
+  &--bold {
+    font-size: 1.25rem;
+    font-family: $sans-serif;
+    font-weight: bold;
+    font-style: normal;
+  }
+  &--twitter {
+    width: 1em;
+    height: 1em;
+    fill: $twitter-color;
+    margin-left: 1em;
+  }
+}
+
+.author__bio {
+  margin: 0;
+  padding: 0;
+  font-family: $sans-serif;
+  font-size: 0.8rem;
+}
+
+.author__avatar {
+  display: block;
+  order: -1;
+  margin-right: 1em;
+}
+
+/* meta info */
+
+.post__single-meta {
+  display: none;
+  @include breakpoint($large) {
+    display: block;
+    flex: 2;
+    text-align: right;
+  }
+}
+
+.post__category {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 2px 5px;
+  color: #fff;
+  font-family: $sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: $text-color;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: $border-radius;
+}
+
+.post__published {
+  display: block;
+  font-family: $sans-serif;
+  font-size: 0.64rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* social */
+
+.post__social {
+  display: flex;
+  justify-content: space-between;
+  a {
+    width: 50%;
+    &:first-child {
+      margin-right: 0.5em;
+    }
+    &:last-child {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+/* taxonomy */
+
+.post__taxonomy {
+  font-size: 0.8rem;
+}
+
+.post__taxonomy-item {
+  font-family: $sans-serif;
+  font-weight: bold;
+  color: $text-color;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* tag boxes */
+
+.tag__list {
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline;
+    list-style-type: none;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+
+.tag__item {
+  display: inline-block;
+  margin-right: 0.5em;
+  padding: 0.125em;
+  text-decoration: none;
+  color: $gray;
+  font-family: $sans-serif;
+  border-bottom-width: 0 !important; // override
+  box-shadow: none !important; // override
+}
+
+
+/*
+   Sidebar
+   ========================================================================== */
+
+.post__sidebar {
+  width: 100%;
+  @include breakpoint($medium-wide) {
+    margin-left: 80px;
+    width: 160px;
+  }
+  @media (min-width: 1025px) {
+    margin-left: 80px;
+    width: 300px;
+  }
+  .js-toc {
+    @media (max-width: 1025px) {
+      display: none !important; // override
+    }
+  }
+}
+
+/* ads */
+
+.ad--sidebar {
+  margin: 0 0 2em;
+  text-align: center;
+  @media (max-width: 320px) {
+    position: relative;
+    left: -15px;
+  }
+  @media (min-width: 320px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

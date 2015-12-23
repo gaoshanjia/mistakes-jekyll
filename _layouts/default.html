@@ -42,7 +42,8 @@
     <script>
       /*{% asset vendor/loadCSS.js %}*/
       <script type="text/javascript" src="/_assets/vendor/loadCSS.js" charset="UTF-8"></script>
-      loadCSS("{% asset_path non-critical.css %}");
+      <!--loadCSS("{% asset_path non-critical.css %}");-->
+      <link rel="stylesheet" href="{{ "/_assets/stylesheets/non-critical.css" | prepend: site.baseurl }}"></style>
     </script>
     <!--<noscript><link href="{% asset_path non-critical.css %}" rel="stylesheet"></noscript>-->
     <noscript><link href="/_assets/stylesheets/non-critical.css " rel="stylesheet"></noscript>

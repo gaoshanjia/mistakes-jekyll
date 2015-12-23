@@ -7,8 +7,6 @@ teaser: default-teaser.png
 locale: en_US
 url: https://gaoshanjia.com
 
-gems:
-- jekyll-assets
 
 # Jekyll configuration
 

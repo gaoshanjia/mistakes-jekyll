@@ -25,6 +25,6 @@ Sorry, but the page you were trying to view has moved or does not exist --- perh
 
 <script type="text/javascript">
   var GOOG_FIXURL_LANG = 'en';
-  var GOOG_FIXURL_SITE = 'https://mademistakes.com'
+  var GOOG_FIXURL_SITE = 'http://gaoshanjia.com'
 </script>
 <script type="text/javascript" src="https://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>

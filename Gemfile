@@ -6,9 +6,6 @@ gem 'sass'
 gem 'breakpoint'
 gem 'rouge'
 
-gems:
-- jekyll-assets
-
 group :jekyll_plugins do
   # gem 'jekyll-picture-tag'
   gem 'jekyll-assets', '0.14.0'

@@ -37,13 +37,15 @@
 
     {% if site.owner.google.plus %}<link rel="author" href="{{ site.owner.google.plus }}?rel=author">{% endif %}
 
-    <style>{% asset critical.css %}</style>
+    <style>/*{% asset critical.css %}*/<link rel="stylesheet" href="{{ "/_assets/stylesheets/critical.css" | prepend: site.baseurl }}"></style>
 
     <script>
-      {% asset vendor/loadCSS.js %}
+      /*{% asset vendor/loadCSS.js %}*/
+      <script type="text/javascript" src="/_assets/vendor/loadCSS.js" charset="UTF-8"></script>
       loadCSS("{% asset_path non-critical.css %}");
     </script>
-    <noscript><link href="{% asset_path non-critical.css %}" rel="stylesheet"></noscript>
+    <!--<noscript><link href="{% asset_path non-critical.css %}" rel="stylesheet"></noscript>-->
+    <noscript><link href="/_assets/stylesheets/non-critical.css " rel="stylesheet"></noscript>
 
     <script>
       // Picture element HTML5 shiv

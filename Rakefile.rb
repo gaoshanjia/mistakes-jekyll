@@ -37,7 +37,7 @@ task :pingomatic do
   begin
     require 'xmlrpc/client'
     puts '* Pinging ping-o-matic'
-    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'gaoshanjia.com' , 'https://gaoshanjia.com', 'https://mademistakes.com/atom.xml')
+    XMLRPC::Client.new('rpc.pingomatic.com', '/').call('weblogUpdates.extendedPing', 'gaoshanjia.com' , 'http://gaoshanjia.com', 'http://gaoshanjia.com/atom.xml')
   rescue LoadError
     puts '! Could not ping ping-o-matic, because XMLRPC::Client could not be found.'
   end
@@ -50,7 +50,7 @@ task :sitemapgoogle do
     require 'net/http'
     require 'uri'
     puts '* Pinging Google about our sitemap'
-    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape('https://gaoshanjia.com/sitemap.xml'))
+    Net::HTTP.get('www.google.com', '/webmasters/tools/ping?sitemap=' + URI.escape('http://gaoshanjia.com/sitemap.xml'))
   rescue LoadError
     puts '! Could not ping Google about our sitemap, because Net::HTTP or URI could not be found.'
   end
@@ -63,7 +63,7 @@ task :sitemapbing do
     require 'net/http'
     require 'uri'
     puts '* Pinging Bing about our sitemap'
-    Net::HTTP.get('www.bing.com', '/webmaster/ping.aspx?siteMap=' + URI.escape('https://gaoshanjia.com/sitemap.xml'))
+    Net::HTTP.get('www.bing.com', '/webmaster/ping.aspx?siteMap=' + URI.escape('http://gaoshanjia.com/sitemap.xml'))
   rescue LoadError
     puts '! Could not ping Bing about our sitemap, because Net::HTTP or URI could not be found.'
   end
@@ -78,7 +78,7 @@ end # task :notify
 desc 'rsync the contents of ./_site to the server'
 task :rsync do
   puts '* rsyncing the contents of ./_site to the server'
-  system 'rsync --perms --recursive --verbose --compress --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r _site/ new-mademistakes.com@s210904.gridserver.com:domains/mademistakes.com/html/'
+  system 'rsync --perms --recursive --verbose --compress --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r _site/ new-mademistakes.com@s210904.gridserver.com:domains/gaoshanjia.com/html/'
 end # task :rsync
 
 # Usage: rake deploy

@@ -2,22 +2,28 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    imagemin: {
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: [
+        'Gruntfile.js',
+        'assets/js/*.js',
+        'assets/js/plugins/*.js',
+        '!assets/js/scripts.min.js'
+      ]
+    },
+    uglify: {
       dist: {
-        options: {
-          optimizationLevel: 7,
-          progressive: true
-        },
-        files: [{
-          expand: true,
-          cwd: 'images/',
-          src: '{,*/}*.{png,jpg,jpeg}',
-          dest: 'images/'
-        }]
+        files: {
+          'assets/js/scripts.min.js': [
+            'assets/js/plugins/*.js',
+            'assets/js/_*.js'
+          ]
+        }
       }
     },
-    imgcompress: {
+    imagemin: {
       dist: {
         options: {
           optimizationLevel: 7,
@@ -35,37 +41,44 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '_svg/',
+          cwd: 'images/',
           src: '{,*/}*.svg',
-          dest: 'svg/'
+          dest: 'images/'
         }]
       }
     },
-    svgstore: {
-      options: {
-        prefix : 'icon-',
-        cleanup: false,
-        svg: {
-          style: 'display: none;'
-        }
-      },
-      default: {
-        files: {
-          '_includes/svg-icons.svg':
-            ['svg/*.svg']
-        }
+    watch: {
+      js: {
+        files: [
+          '<%= jshint.all %>'
+        ],
+        tasks: ['uglify']
       }
+    },
+    clean: {
+      dist: [
+        'assets/js/scripts.min.js'
+      ]
     }
   });
 
   // Load tasks
-  grunt.loadNpmTasks('grunt-newer');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-imgcompress');
-  grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svgmin');
 
   // Register tasks
-  grunt.registerTask('images', ['newer:imgcompress', 'newer:svgmin']);
-  grunt.registerTask('svg', ['svgstore'])
+  grunt.registerTask('default', [
+    'clean',
+    'uglify',
+    'imagemin',
+    'svgmin'
+  ]);
+  grunt.registerTask('dev', [
+    'watch'
+  ]);
+
 };

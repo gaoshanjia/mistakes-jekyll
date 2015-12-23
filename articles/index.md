@@ -1,17 +1,12 @@
 ---
-layout: archive
-title: "Blog Articles"
-date: 2014-06-02T12:26:34-04:00
-modified: 2015-12-02T11:05:08-05:00
-excerpt: "A collection of thoughts, inspiration, mistakes, and other minutia I’ve written."
-feature:
-  visible: true
-  headline: "Featured Articles"
-  category: articles
+layout: page
+title: Sample Articles
+excerpt: "An archive of articles sorted by date."
+search_omit: true
 ---
 
-{% for post in site.categories.articles %}
-  {% if post.featured != true %}
-  {% include archive__item.html %}
-  {% endif %}
+<ul class="post-list">
+{% for post in site.categories.articles %} 
+  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt }}</span>{% endif %}</a></article></li>
 {% endfor %}
+</ul>

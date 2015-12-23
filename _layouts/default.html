@@ -37,10 +37,10 @@
 
     {% if site.owner.google.plus %}<link rel="author" href="{{ site.owner.google.plus }}?rel=author">{% endif %}
 
-    <style>{% assets critical.css %}</style>
+    <style>{% _assets critical.css %}</style>
 
     <script>
-      {% asset vendor/loadCSS.js %}
+      {% _assets vendor/loadCSS.js %}
       loadCSS("{% asset_path non-critical.css %}");
     </script>
     <noscript><link href="{% asset_path non-critical.css %}" rel="stylesheet"></noscript>

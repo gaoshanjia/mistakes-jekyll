@@ -1,131 +1,87 @@
-# Site wide configuration
+# Site settings
+title: Francis Blog
+SEOTitle: 李超源的博客 | Francis Blog
+header-img: img/home-bg.jpg
+email: 27979831@qq.com
+description: "关于Social、广告、营销、文案、设计 | 李超源，Copywriter，PM，Designer | 这里是 @英雄终归草莽 的个人博客，与你一起发现更大的世界。"
+keyword: "李超源, 27979831, Francis, 英雄终归草莽, 李超源的博客, Francis Blog, 博客, 个人网站, 互联网, 文案, 设计, 产品, 品牌, 营销, 广告, TVC"
+url: "http://27979831.github.io"
+baseurl: ""
 
-title: "Made Mistakes"
-description: "Personal website of designer slash illustrator Michael Rose."
-logo: site-logo.png
-teaser: default-teaser.png
-locale: en_US
-url: http://gaoshanjia.com
 
 
-# Jekyll configuration
+# SNS settings
+RSS: false
+weibo_username:     94cm
+zhihu_username:     chaoyuanlee
+#github_username:    27979831
+twitter_username:  chaoyuanlee
+facebook_username:  100010704396773
 
-permalink: /:categories/:title/
-lsi: true
+
+
+# Build settings
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+gems: [jekyll-paginate]
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-include: [".htaccess"]
-exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "*.sublime-project", "*.sublime-workspace", "Gemfile", "Gemfile.lock", "README.md", "node_modules", "Gruntfile.js", "package.json", ".jekyll-assets-cache", "autoprefixer.yml"]
+  input: GFM                            # use Github Flavored Markdown !important
 
 
-# Plugin: jekyll-assets
 
-assets:
-  sources:
-    - _assets/javascripts
-    - _assets/stylesheets
-  baseurl: http://gaoshanjia.com/assets/
-  js_compressor: uglifier
-  css_compressor: sass
-  cachebust: hard
-  cache: true
-  debug: false
-  version: 1
+# Duoshuo settings
+duoshuo_username: francisblog
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
 
-# Plugin: jekyll-archives
-
-jekyll-archives:
-  enabled:
-    - tags
-    - year
-  layouts:
-    year: year_index
-    tag: tag_index
-  permalinks:
-    year: /:year/
-    tag: /tag/:name/
 
 
-# Plugin: jekyll-picture-tag
-
-picture:
-  source: "images/_originals"
-  output: "images"
-  markup: "picture"
-  presets:
-    default:
-      ppi: [1]
-      source_720:
-        media: "(min-width: 1200px)"
-        width: "720"
-      source_670:
-        media: "(min-width: 768px)"
-        width: "670"
-      source_540:
-        media: "(min-width: 600px)"
-        width: "540"
-      source_default:
-        width: "320"
-    hero:
-      attr:
-        class: "page__hero-image"
-        itemprop: "image"
-      ppi: [1]
-      source_1600:
-        media: "(min-width: 1600px)"
-        width: "1600"
-      source_1024:
-        media: "(min-width: 1024px)"
-        width: "1024"
-      source_768:
-        media: "(min-width: 768px)"
-        width: "768"
-      source_600:
-        media: "(min-width: 600px)"
-        width: "600"
-      source_default:
-        width: "320"
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 7be11bd81757011955e99e801abdad62
+# Google Analytics
+# ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_domain: 27979831.github.io
 
 
-# Site owner
 
-owner:
-  name: "Michael Rose"
-  email: michael@mademistakes.com
-  twitter: mmistakes
-  facebook: michaelrose
-  instagram: mmistakes
-  tumblr: mademistakes
-  github: mmistakes
-  github-repo: https://github.com/mmistakes/made-mistakes-jekyll/
-  google:
-  #  ad-client: ca-pub-7328585512091257
-  #  ad-slot: 3049671934
-    analytics: UA-2011187-1
-    plus: https://plus.google.com/+MichaelRoseDesign/posts
-    verify: geapSKtvpBNDSfXVmF09E9CnaHGglbO61r4XgLZtEmo
-  bing:
-    verify: D81F4C18A6CB3018F64D7C827D953DFD
-  alexa:
-    verify: Y5DYjZ4VWlrQzBP5kcQJeOKLNas
-  yandex:
-    verify: 55a5419baf76a498
-  bio: "Just another boring, tattooed, time traveling designer from Buffalo, New York. I enjoy eating chicken wings and sketching on an iPad."
-  avatar: bio-photo.jpg # 160x160 px image for author byline
-disqus-shortname: mmistakes
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "世界那么大，多玩玩看看。"
+sidebar-avatar: /img/avatar-lee.jpg     # use absolute URL.
 
 
-# Collections
 
-collections:
-  faqs:
-    output: true
-    permalink: /:collection/:path/
-    title: FAQs
-  components:
-    output: false
-  colors:
-    output: false
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "高山家",
+     href: "http://gaoshanjia.com"
+  },{
+        title: "枳",
+        href: "http://fiona23.github.io/"
+    }#,{
+#        title: "SmdCn's Blog",
+#        href: "http://blog.smdcn.net"
+#    },{
+#        title: "解旻的博客",
+#        href: "http://xieminis.me/"
+#    }
+]
